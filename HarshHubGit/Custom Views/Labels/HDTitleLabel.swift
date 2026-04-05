@@ -32,7 +32,7 @@ final class HDTitleLabel: UILabel {
         minimumScaleFactor = 0.9
         lineBreakMode = .byTruncatingTail
 
-        adjustsFontForContentSizeCategory = true // Dynamic Type
+        adjustsFontForContentSizeCategory = true  
 
         translatesAutoresizingMaskIntoConstraints = false
 

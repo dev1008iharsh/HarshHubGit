@@ -34,7 +34,7 @@ final class HDBodyLabel: UILabel {
 
         translatesAutoresizingMaskIntoConstraints = false
 
-        numberOfLines = 0 // IMPORTANT for multiline text
+        numberOfLines = 0
 
         isAccessibilityElement = true
     }

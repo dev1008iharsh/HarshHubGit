@@ -25,7 +25,7 @@ final class HDButton: UIButton {
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
 
-        var config = UIButton.Configuration.tinted()
+        var config = UIButton.Configuration.filled()
         config.cornerStyle = .medium
         config.imagePadding = 6
         config.imagePlacement = .leading
@@ -40,7 +40,7 @@ final class HDButton: UIButton {
         guard var config = configuration else { return }
 
         config.baseBackgroundColor = color
-        config.baseForegroundColor = .white // FIX contrast issue
+        config.baseForegroundColor = .white
         config.title = title
         config.image = UIImage(systemName: systemImageName)
 

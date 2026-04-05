@@ -64,7 +64,7 @@ final class FavoritesListVC: HDDataLoadingVC {
 
             case let .failure(error):
                 DispatchQueue.main.async {
-                    self.presentGFAlert(title: "Something went wrong",
+                    self.presentHDAlert(title: "Something went wrong",
                                         message: error.rawValue,
                                         buttonTitle: "Ok")
                 }
@@ -110,7 +110,7 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
         guard editingStyle == .delete else { return }
 
         PersistenceManager.updateWith(
-            favorite: favorites[indexPath.row],
+            favourite: favorites[indexPath.row],
             actionType: .remove
         ) { [weak self] error in
 
@@ -126,7 +126,7 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
             }
 
             DispatchQueue.main.async {
-                self.presentGFAlert(title: "Unable to remove",
+                self.presentHDAlert(title: "Unable to remove",
                                     message: error.rawValue,
                                     buttonTitle: "Ok")
             }

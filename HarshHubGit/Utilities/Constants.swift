@@ -22,16 +22,10 @@ enum Images {
 }
 
 enum DeviceTypes {
+    
     static let idiom = UIDevice.current.userInterfaceIdiom
-
     static let isiPad = idiom == .pad
-
-    // MARK: - Legacy Support (keep minimal)
-
-    static let isiPhoneSE = UIScreen.main.bounds.height <= 568
-
-    // MARK: - Modern Approach
-
+    
     static var isSmallDevice: Bool {
         UIScreen.main.bounds.height < 700
     }

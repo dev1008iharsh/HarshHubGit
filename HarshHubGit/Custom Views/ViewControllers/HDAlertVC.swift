@@ -61,6 +61,7 @@ final class HDAlertVC: UIViewController {
 
     private func configureTitleLabel() {
         titleLabel.text = alertTitle ?? "Something went wrong"
+        messageLabel.numberOfLines = 2
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),

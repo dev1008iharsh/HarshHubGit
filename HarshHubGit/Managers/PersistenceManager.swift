@@ -17,25 +17,25 @@ enum PersistenceManager {
 
     enum Keys { static let favorites = "favorites" }
 
-    static func updateWith(favorite: Follower, actionType: PersistenceActionType, completed: @escaping (HDError?) -> Void) {
+    static func updateWith(favourite: Follower, actionType: PersistenceActionType, completed: @escaping (HDError?) -> Void) {
         queue.async {
             retrieveFavorites { result in
                 switch result {
-                case var .success(favorites):
+                case var .success(favourites):
 
                     switch actionType {
                     case .add:
-                        guard !favorites.contains(favorite) else {
+                        guard !favourites.contains(favourite) else {
                             DispatchQueue.main.async { completed(.alreadyInFavorites) }
                             return
                         }
-                        favorites.append(favorite)
+                        favourites.append(favourite)
 
                     case .remove:
-                        favorites.removeAll { $0.login == favorite.login }
+                        favourites.removeAll { $0.login == favourite.login }
                     }
 
-                    let error = save(favorites: favorites)
+                    let error = save(favorites: favourites)
                     DispatchQueue.main.async { completed(error) }
 
                 case let .failure(error):

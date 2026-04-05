@@ -9,7 +9,7 @@ import SafariServices
 import UIKit
 
 extension UIViewController {
-    func presentGFAlert(title: String, message: String, buttonTitle: String) {
+    func presentHDAlert(title: String, message: String, buttonTitle: String) {
         DispatchQueue.main.async {
             guard self.presentedViewController == nil else { return }
 

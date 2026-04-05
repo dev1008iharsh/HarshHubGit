@@ -34,14 +34,13 @@ final class HDTabBarController: UITabBarController {
             createSearchNavigationController(),
             createFavoritesNavigationController(),
         ]
-
-        selectedIndex = 0 // Important: default tab
+        selectedIndex = 0
     }
 
     // MARK: - Navigation Controllers
 
     private func createSearchNavigationController() -> UINavigationController {
-        let viewController = SearchVC() // ❗unchanged as per your rule
+        let viewController = SearchVC()
         viewController.title = "Search"
         viewController.navigationItem.largeTitleDisplayMode = .always
 

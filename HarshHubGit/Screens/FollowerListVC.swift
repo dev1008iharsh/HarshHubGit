@@ -10,7 +10,7 @@ import UIKit
 final class FollowerListVC: HDDataLoadingVC, UISearchResultsUpdating, UICollectionViewDelegate {
     enum Section { case main }
 
-    var username: String!
+    var username = String()
 
     private var followers: [Follower] = []
     private var filteredFollowers: [Follower] = []
@@ -47,7 +47,7 @@ final class FollowerListVC: HDDataLoadingVC, UISearchResultsUpdating, UICollecti
     override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
         if followers.isEmpty && !isLoadingMoreFollowers {
             var config = UIContentUnavailableConfiguration.empty()
-            config.image = .init(systemName: "person.slash")
+            config.image = UIImage(systemName: "person.2.slash")
             config.text = "No Followers"
             config.secondaryText = "This user has no followers. Go follow them!"
             contentUnavailableConfiguration = config
@@ -62,7 +62,7 @@ final class FollowerListVC: HDDataLoadingVC, UISearchResultsUpdating, UICollecti
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
     }
 
@@ -77,12 +77,12 @@ final class FollowerListVC: HDDataLoadingVC, UISearchResultsUpdating, UICollecti
     private func configureSearchController() {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search for a username"
+        searchController.searchBar.placeholder = "Search for a github username"
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
     }
 
-    // MARK: - SEARCH (FIXED)
+    // MARK: - SEARCH
 
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
@@ -124,8 +124,8 @@ final class FollowerListVC: HDDataLoadingVC, UISearchResultsUpdating, UICollecti
 
             } catch {
                 await MainActor.run {
-                    if let gfError = error as? HDError {
-                        self.presentGFAlert(title: "Error", message: gfError.rawValue, buttonTitle: "Ok")
+                    if let hdError = error as? HDError {
+                        self.presentHDAlert(title: "Error", message: hdError.rawValue, buttonTitle: "Ok")
                     } else {
                         self.presentDefaultError()
                     }
@@ -182,8 +182,8 @@ final class FollowerListVC: HDDataLoadingVC, UISearchResultsUpdating, UICollecti
 
             } catch {
                 await MainActor.run {
-                    if let gfError = error as? HDError {
-                        self.presentGFAlert(title: "Error", message: gfError.rawValue, buttonTitle: "Ok")
+                    if let hdError = error as? HDError {
+                        self.presentHDAlert(title: "Error", message: hdError.rawValue, buttonTitle: "OK")
                     } else {
                         self.presentDefaultError()
                     }
@@ -195,16 +195,16 @@ final class FollowerListVC: HDDataLoadingVC, UISearchResultsUpdating, UICollecti
     }
 
     private func addUserToFavorites(user: User) {
-        let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
+        let favourite = Follower(login: user.login, avatarUrl: user.avatarUrl)
 
-        PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
+        PersistenceManager.updateWith(favourite: favourite, actionType: .add) { [weak self] error in
             guard let self else { return }
 
             DispatchQueue.main.async {
                 if let error {
-                    self.presentGFAlert(title: "Error", message: error.rawValue, buttonTitle: "Ok")
+                    self.presentHDAlert(title: "Error", message: error.rawValue, buttonTitle: "Ok")
                 } else {
-                    self.presentGFAlert(title: "Success!", message: "User added to favorites 🎉", buttonTitle: "Done")
+                    self.presentHDAlert(title: "Success!", message: "User added to favorites 🎉", buttonTitle: "Done")
                 }
             }
         }

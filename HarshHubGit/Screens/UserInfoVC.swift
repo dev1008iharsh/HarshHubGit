@@ -21,7 +21,7 @@ final class UserInfoVC: HDDataLoadingVC {
     private let dateLabel = HDBodyLabel(textAlignment: .center)
     private var itemViews: [UIView] = []
 
-    var username: String!
+    var username = String()
     weak var delegate: UserInfoVCDelegate?
 
     override func viewDidLoad() {
@@ -60,8 +60,8 @@ final class UserInfoVC: HDDataLoadingVC {
                 }
             } catch {
                 await MainActor.run {
-                    if let gfError = error as? HDError {
-                        self.presentGFAlert(title: "Something Went Wrong", message: gfError.rawValue, buttonTitle: "Ok")
+                    if let hdError = error as? HDError {
+                        self.presentHDAlert(title: "Something Went Wrong", message: hdError.rawValue, buttonTitle: "Ok")
                     } else {
                         self.presentDefaultError()
                     }
@@ -123,7 +123,7 @@ final class UserInfoVC: HDDataLoadingVC {
 extension UserInfoVC: HDRepoItemVCDelegate {
     func didTapGitHubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
-            presentGFAlert(title: "Invalid URL", message: "The url attached to this user is invalid.", buttonTitle: "Ok")
+            presentHDAlert(title: "Invalid URL", message: "The url attached to this user is invalid.", buttonTitle: "Ok")
             return
         }
         presentSafariVC(with: url)
@@ -133,7 +133,7 @@ extension UserInfoVC: HDRepoItemVCDelegate {
 extension UserInfoVC: HDFollowerItemVCDelegate {
     func didTapGetFollowers(for user: User) {
         guard user.followers != 0 else {
-            presentGFAlert(title: "No followers", message: "This user has no followers. What a shame 😞.", buttonTitle: "So sad")
+            presentHDAlert(title: "No followers", message: "This user has no followers. What a shame 😞.", buttonTitle: "So sad")
             return
         }
 
