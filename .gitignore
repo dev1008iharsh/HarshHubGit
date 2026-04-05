@@ -1,0 +1,25 @@
+# MARK: - macOS
+.DS_Store
+
+# MARK: - Xcode Build Files
+build/
+DerivedData/
+
+# MARK: - Xcode User Data (local only)
+xcuserdata/
+*.xcuserstate
+
+# MARK: - Workspace
+*.xcworkspace
+
+# MARK: - Swift Package Manager
+.build/
+
+# MARK: - Logs & Temp
+*.log
+*.tmp
+*.swp
+
+# MARK: - Dependencies (optional)
+# Pods/
+# Carthage/
