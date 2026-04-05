@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "HarshHub.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
