@@ -7,6 +7,9 @@ This app allows users to search GitHub profiles, view followers, explore user de
  
 ---
 
+<img width="1190" height="649" alt="Gemini_Generated_Image_8cdjg58cdjg58cdj_65_1_65" src="https://github.com/user-attachments/assets/498c2dae-e7b5-44f5-8c12-5a3e4a02ab12" />
+
+
 ## ✨ Features
 
 - 🔍 Search GitHub users by username
