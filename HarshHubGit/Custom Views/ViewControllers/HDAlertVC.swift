@@ -61,13 +61,12 @@ final class HDAlertVC: UIViewController {
 
     private func configureTitleLabel() {
         titleLabel.text = alertTitle ?? "Something went wrong"
-        messageLabel.numberOfLines = 2
+        titleLabel.numberOfLines = 2
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
-            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
-            titleLabel.heightAnchor.constraint(equalToConstant: 28),
+            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding)
         ])
     }
 
@@ -85,7 +84,7 @@ final class HDAlertVC: UIViewController {
 
     private func configureMessageLabel() {
         messageLabel.text = message ?? "Unable to complete request"
-        messageLabel.numberOfLines = 4
+        messageLabel.numberOfLines = 3
 
         NSLayoutConstraint.activate([
             messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),

@@ -25,7 +25,7 @@ final class HDTabBarController: UITabBarController {
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
 
-        tabBar.tintColor = .systemGreen
+        tabBar.tintColor = .systemIndigo
         tabBar.unselectedItemTintColor = .secondaryLabel
     }
 
